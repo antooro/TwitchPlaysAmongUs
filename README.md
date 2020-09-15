@@ -1,22 +1,8 @@
-# Twitch Plays X
+# Twitch Plays Among Us
 
 > (inspired by [TwitchPlaysPokemon])
 
-Connect to Twitch's messaging service, (TMI) via [`tmi.js`](https://github.com/tmijs/tmi.js) (previously using IRC) to send inputs to a program and stream it, TwitchPlaysPokemon style. Should support linux/windows/mac.
-
-### In Action
-
-Pokemon on Windows
-
-![](http://zippy.gfycat.com/ActiveLankyHorsemouse.gif)
-
-Pokemon Red running in a Ubuntu 13.10 VM
-
-![](http://i.imgur.com/aLSO6MK.gif)
-
-### Caveats
-
-On Windows, the program has to be *focused* in order to send keyboard inputs so you won't be able to use your computer at the same time (unless you run the program in a virtual machine).
+![](https://pbs.twimg.com/media/Eh-pkzZWAAAfC7e?format=png&name=large)
 
 ## Installation
 
