@@ -1,5 +1,5 @@
 // change these two variables
-let channel = process.env.TWITCH_CHANNEL || "TWTCH CHANNEL";
+let channel = process.env.TWITCH_CHANNEL || "antooro";
 let programName =  process.env.CONFIG_PROGRAM_NAME || "Among Us";
 //"Binding of Isaac: Afterbirth+";
   

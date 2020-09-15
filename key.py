@@ -8,7 +8,7 @@ import win32gui
 import time, sys
 import pywinauto
 
-keyDelay = 2.5
+keyDelay = 0.1
 # https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 keymap = {
     "up": win32con.VK_UP,
