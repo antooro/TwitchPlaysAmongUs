@@ -1,20 +1,20 @@
 // change these two variables
-let channel = process.env.TWITCH_CHANNEL || "twitchplayspokemon";
-let programName =
-  process.env.CONFIG_PROGRAM_NAME || "VisualBoyAdvance";
+let channel = process.env.TWITCH_CHANNEL || "TWTCH CHANNEL";
+let programName =  process.env.CONFIG_PROGRAM_NAME || "Among Us";
+//"Binding of Isaac: Afterbirth+";
   
 // List of commands to check for
 let commands = [
-  "left",
-  "right",
-  "up",
-  "down",
-  "start",
-  "select",
-  "a",
-  "b",
-  "democracy",
-  "anarchy",
+  "left\\d",
+  "right\\d",
+  "up\\d",
+  "down\\d",
+  "use",
+  "close",
+  "kill",
+  "map",
+  "rep",
+  "stop"
 ];
 
 let filteredCommands = [];

@@ -6,36 +6,50 @@ import win32api
 import win32con
 import win32gui
 import time, sys
+import pywinauto
 
-keyDelay = 0.1
+keyDelay = 2.5
 # https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 keymap = {
-    "Up": win32con.VK_UP,
-    "Left": win32con.VK_LEFT,
-    "Down": win32con.VK_DOWN,
-    "Right": win32con.VK_RIGHT,
-    "b": 0x42, # ord("B"),
-    "a": 0x41, # ord("A"),
-    "y": 0x59, # ord("Y"),  # for DS
-    "x": 0x58, # ord("X"),  # for DS
-    "s": 0x53, # ord("S"),  # Start
-    "e": 0x45, # ord("E"),  # Select
+    "up": win32con.VK_UP,
+    "left": win32con.VK_LEFT,
+    "down": win32con.VK_DOWN,
+    "right": win32con.VK_RIGHT,
+    "use": win32con.VK_SPACE, #use y sabotage
+    "close": win32con.VK_ESCAPE, #salir de msion no se usa
+    "map": win32con.VK_TAB, #mapa
+    "rep": 0x52, # Reportar muerte
+    "kill": 0x51, # Matar
+    "stop": "stop"
 }
+def clearkeys():
+    win32api.keybd_event(win32con.VK_RIGHT, 0, win32con.KEYEVENTF_KEYUP, 0)
+    win32api.keybd_event(win32con.VK_LEFT, 0, win32con.KEYEVENTF_KEYUP, 0)
+    win32api.keybd_event(win32con.VK_UP, 0, win32con.KEYEVENTF_KEYUP, 0)
+    win32api.keybd_event(win32con.VK_DOWN, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 # this way has to keep window in focus
 def sendKey(button):
+    
+    if button[-1].isdigit():
+        keyDelay = int(button[-1])*.25
+        button = button[:-1]
+
     win32api.keybd_event(keymap[button], 0, 0, 0)
     time.sleep(keyDelay)
+    keyDelay = 0.1
     win32api.keybd_event(keymap[button], 0, win32con.KEYEVENTF_KEYUP, 0)
 
 def SimpleWindowCheck(windowname):
     window = None
+    print(windowName, "windowname")
     try:
         window = win32gui.FindWindow(windowName, None)
     except win32gui.error:
         try: 
             window = win32gui.FindWindow(None, windowName)
         except win32gui.error:
+           
             return False
         else:
             return window
@@ -43,8 +57,10 @@ def SimpleWindowCheck(windowname):
         return window
 
 if __name__ == "__main__":
-    windowName = sys.argv[1]
-    key = sys.argv[2]
+    print("Inicio de programa")
+    windowName = " ".join(sys.argv[1:-1])
+    key = sys.argv[-1]
+
 
     winId = SimpleWindowCheck(windowName)
     # winId = None
@@ -63,8 +79,7 @@ if __name__ == "__main__":
         # can check with this
         for hwnd in windowList:
             hwndChild = win32gui.GetWindow(hwnd, win32con.GW_CHILD)
-            # print("window title/id/child id: ", win32gui.GetWindowText(hwnd), "/", hwnd, "/", hwndChild)
-
+            
     win32gui.ShowWindow(winId, win32con.SW_SHOWNORMAL)
     win32gui.SetForegroundWindow(winId)
     sendKey(key)
